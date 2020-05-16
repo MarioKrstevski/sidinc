@@ -121,6 +121,7 @@
                 @endcan
                 @can('job_access')
                     <li class="nav-item">
+                        @if (in_array('admin', array(auth()->user()->roles())))
                         <a href="{{ route("admin.jobs.index") }}" class="nav-link {{ request()->is('admin/jobs') || request()->is('admin/jobs/*') ? 'active' : '' }}">
                             <i class="fa-fw nav-icon fas fa-user-md">
 
@@ -129,6 +130,16 @@
                                 {{ trans('cruds.job.title') }}
                             </p>
                         </a>
+                        @elseif (auth()->user()->hasRole('user'))
+                            <a href="{{ route("users.jobs.my_jobs") }}" class="nav-link {{ request()->is('user/jobs') || request()->is('user/jobs/*') ? 'active' : '' }}">
+                                <i class="fa-fw nav-icon fas fa-user-md">
+
+                                </i>
+                                <p>
+                                    {{ trans('cruds.job.title') }}
+                                </p>
+                            </a>
+                        @endif
                     </li>
                 @endcan
                 @can('badge_access')
@@ -181,6 +192,8 @@
                 @endcan
                 @can('task_access')
                     <li class="nav-item">
+                         @if (auth()->user()->hasRole('admin'))
+                    {{--     @auth('admin') --}}
                         <a href="{{ route("admin.tasks.index") }}" class="nav-link {{ request()->is('admin/tasks') || request()->is('admin/tasks/*') ? 'active' : '' }}">
                             <i class="fa-fw nav-icon fas fa-tasks">
 
@@ -189,6 +202,18 @@
                                 {{ trans('cruds.task.title') }}
                             </p>
                         </a>
+                         @elseif (auth()->user()->hasRole('user'))
+                    {{--     @elseauth('user') --}}
+                            <a href="{{ route("users.tasks.my_asks") }}" class="nav-link {{ request()->is('users/tasks') || request()->is('users/tasks/*') ? 'active' : '' }}">
+                                <i class="fa-fw nav-icon fas fa-tasks">
+
+                                </i>
+                                <p>
+                                    {{ trans('cruds.task.title') }}
+                                </p>
+                            </a>
+                         @endif
+                    {{--         @endauth --}}
                     </li>
                 @endcan
                 @if(file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php')))
@@ -206,12 +231,12 @@
                 @endif
                 <li class="nav-item">
                     <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
-                        <p>
-                            <i class="fas fa-fw fa-sign-out-alt nav-icon">
+                                <i class="fas fa-fw fa-sign-out-alt nav-icon">
 
-                            </i>
-                            <p>{{ trans('global.logout') }}</p>
-                        </p>
+                                </i>
+                                <p>
+                                    {{ trans('global.logout') }}
+                                </p>
                     </a>
                 </li>
             </ul>

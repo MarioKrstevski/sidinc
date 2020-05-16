@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 Route::redirect('/', '/login');
 Route::get('/home', function () {
     if (session('status')) {
@@ -78,3 +81,18 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 
         Route::post('password', 'ChangePasswordController@update')->name('password.update');
     }
 });
+
+Route::group(['prefix' => 'users', 'as' => 'users.', 'namespace' => 'Users', 'middleware' => ['auth']], function () {
+    Route::get('my-tasks', 'TasksController@index');
+    Route::get('my-jobs', 'JobsController@index');
+    Route::post('tasks', 'TasksController@index');
+});
+
+// Route::get('/admin', 'AdminController@index')->name('admin.home');
+Route::get('/users', 'UsersController@index')->name('users.home');
+
+// Route::view('admin', 'home')->name('admin.home');
+Route::view('users', 'home')->name('users.home');
+
+Route::resource('admin', 'AdminController');
+Route::resource('users', 'UsersController');
