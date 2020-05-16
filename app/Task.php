@@ -35,6 +35,7 @@ class Task extends Model implements HasMedia
         'reward_amount',
         'deadline',
         'max_enrolled',
+        'enrolled',
         'importance',
         'active',
         'scheduled_at',
@@ -82,5 +83,10 @@ class Task extends Model implements HasMedia
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
     }
 }

@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
+use App\Http\Resources\Admin\JobResource;
 use App\Http\Resources\Admin\TaskResource;
+use App\Job;
 use App\Task;
 use Gate;
 use Illuminate\Http\Request;
@@ -60,4 +62,6 @@ class TasksApiController extends Controller
 
         return response(null, Response::HTTP_NO_CONTENT);
     }
+
+
 }

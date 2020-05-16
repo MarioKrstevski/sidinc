@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "521567141597060a8a9a4be768acd5da",
+    "content-hash": "6b2f75427aa3f9c79c441ac079d8e1e4",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -57,6 +57,40 @@
                 "stack"
             ],
             "time": "2019-12-24T22:41:47+00:00"
+        },
+        {
+            "name": "banma/dnmp",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/luo-ding/dnmp.git",
+                "reference": "7460e4951179705afe47e0e6f01af0206196e96f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/luo-ding/dnmp/zipball/7460e4951179705afe47e0e6f01af0206196e96f",
+                "reference": "7460e4951179705afe47e0e6f01af0206196e96f",
+                "shasum": ""
+            },
+            "type": "project",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "luoding",
+                    "email": "18852951201@163.com"
+                }
+            ],
+            "description": "Install Docker + Nginx + PHP7.3 + MySQL",
+            "keywords": [
+                "docker",
+                "mysql",
+                "nginx",
+                "php"
+            ],
+            "time": "2019-09-26T09:18:32+00:00"
         },
         {
             "name": "brick/math",

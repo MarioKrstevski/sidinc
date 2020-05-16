@@ -8,8 +8,10 @@ use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyTaskRequest;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
+use App\Job;
 use App\Tag;
 use App\Task;
+use App\User;
 use Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\Models\Media;
@@ -109,6 +111,8 @@ class TasksController extends Controller
         $task = Task::create($request->all());
         $task->categories()->sync($request->input('categories', []));
         $task->tags()->sync($request->input('tags', []));
+        $task->enrolled=0;
+        $task->active=1;
 
         if ($media = $request->input('ck-media', false)) {
             Media::whereIn('id', $media)->update(['model_id' => $task->id]);
@@ -175,4 +179,5 @@ class TasksController extends Controller
 
         return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
     }
+
 }

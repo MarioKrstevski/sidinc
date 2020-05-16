@@ -141,4 +141,48 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Wallet::class, 'wallet_id');
     }
+
+    public function tasks()
+    {
+        return $this->belongsToMany(Task::class);
+    }
+
+    public function jobs()
+    {
+        return $this->belongsToMany(Job::class);
+    }
+
+    public function hasRole($role)
+    {
+        if ($this->roles()->where('name', $role)->first()) {
+            return true;
+        }
+        return false;
+    }
+
+    public function authorizeRoles($roles)
+    {
+        if ($this->hasAnyRole($roles)) {
+            return true;
+        }
+        abort(401, 'This action is unauthorized. ');
+        return false;
+    }
+
+    public function hasAnyRoles($roles)
+    {
+        if (is_array($roles)) {
+            foreach ($roles as $role) {
+                if ($this->hasRole($role)) {
+                    return true;
+                }
+            }
+        }
+        else {
+            if ($this->hasRole($roles)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
