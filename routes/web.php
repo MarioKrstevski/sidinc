@@ -12,8 +12,16 @@ Route::get('/home', function () {
 Auth::routes();
 Route::get('userVerification/{token}', 'UserVerificationController@approve')->name('userVerification');
 // Admin
+Route::group([
+    'prefix' => 'user',
+    'as' => 'user.',
+    'namespace' => 'User',
+    'middleware' => ['auth']
+], function () {
+    Route::get('/', 'HomeController@index')->name('home');
+});
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth','admin']], function () {
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('user-alerts/read', 'UserAlertsController@read');
     // Permissions
