@@ -1,5 +1,17 @@
 <?php
 
+
+//try{
+//    $dbh = new pdo('mysql:host=mysql.mariokrstevski.com:3306;dbname=sidinc','sidinc','smajli123');
+//    die(json_encode(array('outcome' => true)));
+//}catch(PDOException $ex){
+//    die(json_encode(array(
+//        'outcome' => false,
+//        'message' => 'Unable to connect'
+//    )));
+//}
+
+
 /**
  * Laravel - A PHP Framework For Web Artisans
  *
