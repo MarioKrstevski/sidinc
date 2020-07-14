@@ -19,6 +19,8 @@ Route::group([
     'middleware' => ['auth']
 ], function () {
     Route::get('/', 'HomeController@index')->name('home');
+    Route::post('job/{id}', 'JobsController@store')->name('jobcreate');
+
 });
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth','admin']], function () {

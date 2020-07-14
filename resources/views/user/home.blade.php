@@ -11,7 +11,6 @@
                 @if($task->active && (\Carbon\Carbon::parse($task->scheduled_at)->timestamp < \Carbon\Carbon::now()->timestamp) && (
     \Carbon\Carbon::parse($task->deadline)->timestamp > \Carbon\Carbon::now()->timestamp
 )  )
-
                 <div class="list-group-item">
                    <div class="row">
                        <div class="col-9">
@@ -27,7 +26,13 @@
                            <b>$ {{$task -> reward_amount}}</b>
                            </div>
                            <div class="flex">
-                               <button class="btn btn-primary" style="margin-top: 35px;">Start</button>
+
+
+                               <form action="{{ route('user.jobcreate', ['id' => $task->id] ) }}" method="POST" >
+                                   @csrf
+                                   <button class="btn btn-primary" style="margin-top: 35px;">Start</button>
+
+                               </form>
 
                            </div>
 
